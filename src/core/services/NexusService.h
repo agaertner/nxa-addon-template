@@ -1,6 +1,10 @@
 #ifndef NEXUSSERVICE_H
 #define NEXUSSERVICE_H
-//#include <nexus-rtapi/RTAPI.hpp>
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h")
+#include "nexus-rtapi/RTAPI.h"
+#elif __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+#include "nexus-rtapi/RTAPI.hpp"
+#endif
 #include "nexus-core/Nexus.h"
 namespace Nekres::Services
 {
@@ -13,7 +17,9 @@ namespace Nekres::Services
 
 			~NexusService();
 
-			//RTAPI::RealTimeData* Data() const;
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+			RTAPI::RealTimeData* Data() const;
+#endif
 
 			NexusLinkData_t* Core() const;
 
@@ -22,7 +28,9 @@ namespace Nekres::Services
 
 			AddonAPI_t* m_api;
 			NexusLinkData_t* m_nexus;
-			//RTAPI::RealTimeData* m_rtdata;
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+			RTAPI::RealTimeData* m_rtdata;
+#endif
 
 			static void OnAddonLoaded(void* aSignature)
 			{
@@ -32,7 +40,9 @@ namespace Nekres::Services
 					if (!sig) { return; }
 					
 					// Initialize real time API.
-					//if (*sig == RTAPI_SIG) m_instance->m_rtdata = (RTAPI::RealTimeData*)m_instance->m_api->DataLink_Get(DL_RTAPI);
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+					if (*sig == RTAPI_SIG) m_instance->m_rtdata = (RTAPI::RealTimeData*)m_instance->m_api->DataLink_Get(DL_RTAPI);
+#endif
 				}
 			}
 
@@ -44,7 +54,9 @@ namespace Nekres::Services
 					if (!sig) { return; }
 
 					// Unset real time API.
-					//if (*sig == RTAPI_SIG) m_instance->m_rtdata = nullptr;
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+					if (*sig == RTAPI_SIG) m_instance->m_rtdata = nullptr;
+#endif
 				}
 			}
 	};

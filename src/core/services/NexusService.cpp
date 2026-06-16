@@ -4,7 +4,9 @@ Nekres::Services::NexusService::NexusService(AddonAPI_t* p_api) : m_api(p_api)
 {
 	m_instance = this;
 	m_nexus = (NexusLinkData_t*)m_api->DataLink_Get("DL_NEXUS_LINK");
-	//m_rtdata = (RTAPI::RealTimeData*)m_api->DataLink.Get(DL_RTAPI);
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+	m_rtdata = (RTAPI::RealTimeData*)m_api->DataLink_Get(DL_RTAPI);
+#endif
 
 	m_api->Events_Subscribe(ADDON_LOADED, OnAddonLoaded);
 	m_api->Events_Subscribe(ADDON_UNLOADED, OnAddonUnloaded);
@@ -17,10 +19,12 @@ Nekres::Services::NexusService::~NexusService()
 	m_api->Events_Unsubscribe(ADDON_UNLOADED, OnAddonUnloaded);
 }
 
-/*RTAPI::RealTimeData* Nekres::Services::NexusService::Data() const
+#if __has_include("../submodules/nexus-rtapi/RTAPI.h") || __has_include("../submodules/nexus-rtapi/RTAPI.hpp")
+RTAPI::RealTimeData* Nekres::Services::NexusService::Data() const
 {
 	return m_rtdata;
-}*/
+}
+#endif
 
 NexusLinkData_t* Nekres::Services::NexusService::Core() const
 {
