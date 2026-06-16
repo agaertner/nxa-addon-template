@@ -144,6 +144,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PreBuildEvent>
       <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "if (-not (Test-Path Signature.h)) { $sig = '0x' + (-join ((1..8) | ForEach-Object { '{0:X}' -f (Get-Random -Minimum 0 -Maximum 16) })); \"#pragma once`n#define ADDON_SIGNATURE $sig\" | Set-Content Signature.h -Encoding utf8 }; $d=Get-Date; $rev=$d.Hour*60+$d.Minute; @('#pragma once', ('#define V_MAJOR ' + $d.Year), ('#define V_MINOR ' + $d.Month), ('#define V_BUILD ' + $d.Day), ('#define V_REVISION ' + $rev)) | Set-Content Version.h -Encoding utf8"</Command>

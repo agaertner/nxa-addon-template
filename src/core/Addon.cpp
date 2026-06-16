@@ -15,7 +15,9 @@ Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) :
 
     m_instance = this;
     ImGui::SetCurrentContext((ImGuiContext*)m_api->ImguiContext);
-    ImGui::SetAllocatorFunctions((void* (*)(size_t, void*))m_api->ImguiMalloc, (void(*)(void*, void*))m_api->ImguiFree); // on imgui 1.80+
+    if (m_api->ImguiMalloc && m_api->ImguiFree) {
+        ImGui::SetAllocatorFunctions((void* (*)(size_t, void*))m_api->ImguiMalloc, (void(*)(void*, void*))m_api->ImguiFree); // on imgui 1.80+
+    }
 
     std::string folderName = m_addonDef->Name;
     folderName.erase(std::remove_if(folderName.begin(), folderName.end(), ::isspace), folderName.end());
@@ -56,8 +58,6 @@ void Nekres::Addon::Options()
     // ========================================================================
     // SETTINGS UI
     // ========================================================================
-    // Build settings UI here. This is called when the user opens the
-    // Checkbox Example
     if (ImGui::Checkbox("Enable Example Feature", &Settings::IsExampleEnabled))
     {
         Settings::Save(m_settingsPath); // Automatically save when clicked
@@ -65,14 +65,33 @@ void Nekres::Addon::Options()
 
     // Dropdown (Combo) Example
     const char* exampleOptions[] = { "Option A", "Option B", "Option C" };
+    const int exampleOptionsCount = 3;
+
+    // Safety clamp to prevent out-of-bounds access if settings get corrupted
+    if (Settings::ExampleDropdownIndex < 0 || Settings::ExampleDropdownIndex >= exampleOptionsCount) {
+        Settings::ExampleDropdownIndex = 0;
+    }
     
     ImGui::AlignTextToFramePadding();
     ImGui::Text("Example Dropdown:");
     ImGui::SameLine();
     ImGui::SetNextItemWidth(150.0f);
     
-    if (ImGui::Combo("##ExampleDropdown", &Settings::ExampleDropdownIndex, exampleOptions, IM_ARRAYSIZE(exampleOptions)))
+    if (ImGui::BeginCombo("##ExampleDropdown", exampleOptions[Settings::ExampleDropdownIndex]))
     {
-        Settings::Save(m_settingsPath); // Automatically save when selection changes
+        for (int i = 0; i < exampleOptionsCount; i++)
+        {
+            bool isSelected = (Settings::ExampleDropdownIndex == i);
+            if (ImGui::Selectable(exampleOptions[i], isSelected))
+            {
+                Settings::ExampleDropdownIndex = i;
+                Settings::Save(m_settingsPath);
+            }
+            if (isSelected)
+            {
+                ImGui::SetItemDefaultFocus();
+            }
+        }
+        ImGui::EndCombo();
     }
 }
