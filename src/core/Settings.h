@@ -6,8 +6,8 @@
 #include "thirdparty/nlohmann/json.hpp"
 using json = nlohmann::json;
 
-extern const char* WINDOW_WIDTH;
-extern const char* WINDOW_HEIGHT;
+extern const char* IS_EXAMPLE_ENABLED;
+extern const char* EXAMPLE_DROPDOWN_INDEX;
 
 namespace Settings
 {
@@ -19,8 +19,13 @@ namespace Settings
     /* Saves the settings. */
     void Save(std::filesystem::path aPath);
 
-    extern float WindowWidth;
-    extern float WindowHeight;
+    // ========================================================================
+    // SETTINGS ACCESSIBILITY
+    // ========================================================================
+    // These variables are globally accessible across the addon's code.
+    // Include "Settings.h" anywhere and access them via Settings::IsExampleEnabled.
+    extern bool IsExampleEnabled;
+    extern int ExampleDropdownIndex;
 }
 
 #endif

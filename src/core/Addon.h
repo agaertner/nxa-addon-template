@@ -26,6 +26,13 @@ namespace Nekres {
                 }
             }
 
+            static std::filesystem::path GetAddonPath() {
+                if (m_instance) {
+                    return m_instance->m_addonPath;
+                }
+                return std::filesystem::path();
+            }
+
             void Render();
             void Options();
 

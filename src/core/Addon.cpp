@@ -1,4 +1,6 @@
 #include "Addon.h"
+#include <algorithm>
+#include <cctype>
 
 Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) : 
     m_addonDef(p_addonDef), m_api(p_api)
@@ -15,9 +17,12 @@ Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) :
     ImGui::SetCurrentContext((ImGuiContext*)m_api->ImguiContext);
     ImGui::SetAllocatorFunctions((void* (*)(size_t, void*))m_api->ImguiMalloc, (void(*)(void*, void*))m_api->ImguiFree); // on imgui 1.80+
 
-    m_addonPath = m_api->Paths_GetAddonDirectory("Nekres/WindowResize");
-    m_settingsPath = m_api->Paths_GetAddonDirectory("Nekres/WindowResize/settings.json");
-    std::filesystem::create_directory(m_addonPath);
+    std::string folderName = m_addonDef->Name;
+    folderName.erase(std::remove_if(folderName.begin(), folderName.end(), ::isspace), folderName.end());
+
+    m_addonPath = m_api->Paths_GetAddonDirectory(folderName.c_str());
+    m_settingsPath = m_addonPath / "settings.json";
+    std::filesystem::create_directories(m_addonPath);
     Settings::Load(m_settingsPath);
     m_api->GUI_Register(ERenderType::RT_Render, AddonRender);
     m_api->GUI_Register(ERenderType::RT_OptionsRender, AddonOptions);
@@ -48,4 +53,26 @@ void Nekres::Addon::Render()
 
 void Nekres::Addon::Options()
 {
+    // ========================================================================
+    // SETTINGS UI
+    // ========================================================================
+    // Build settings UI here. This is called when the user opens the
+    // Checkbox Example
+    if (ImGui::Checkbox("Enable Example Feature", &Settings::IsExampleEnabled))
+    {
+        Settings::Save(m_settingsPath); // Automatically save when clicked
+    }
+
+    // Dropdown (Combo) Example
+    const char* exampleOptions[] = { "Option A", "Option B", "Option C" };
+    
+    ImGui::AlignTextToFramePadding();
+    ImGui::Text("Example Dropdown:");
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(150.0f);
+    
+    if (ImGui::Combo("##ExampleDropdown", &Settings::ExampleDropdownIndex, exampleOptions, IM_ARRAYSIZE(exampleOptions)))
+    {
+        Settings::Save(m_settingsPath); // Automatically save when selection changes
+    }
 }
