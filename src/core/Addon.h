@@ -5,10 +5,14 @@
 #include <filesystem>
 #include <fstream>
 #include <DirectXMath.h>
-#include "../Settings.h"
+#include "Settings.h"
+#include "Defines.h"
 #include "imgui/imgui.h"
-#if __has_include("../submodules/nexus-mumble/Mumble.h")
+#ifdef USE_MUMBLE
 #include "services/Gw2MumbleService.h"
+#endif
+#ifdef USE_RTAPI
+#include "services/RealTimeApiService.h"
 #endif
 #include "services/NexusService.h" 
 namespace Nekres {
@@ -22,10 +26,13 @@ namespace Nekres {
 
 			~Addon();
 
-#if __has_include("../submodules/nexus-mumble/Mumble.h")
+#ifdef USE_MUMBLE
 			Services::Gw2MumbleService* Gw2Mumble;
 #endif
 			Services::NexusService* Nexus;
+#ifdef USE_RTAPI
+			Services::RealTimeApiService* RealTimeApi;
+#endif
 
 			static void Log(ELogLevel p_logLevel, const char* p_message) {
 				if (m_instance) {

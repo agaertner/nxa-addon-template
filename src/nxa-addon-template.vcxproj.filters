@@ -69,8 +69,8 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\Settings.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="Version.h">
       <Filter>Header Files</Filter>
@@ -88,6 +88,9 @@
       <Filter>Header Files\core\services</Filter>
     </ClInclude>
     <ClInclude Include="core\services\Gw2MumbleService.h">
+      <Filter>Header Files\core\services</Filter>
+    </ClInclude>
+    <ClInclude Include="core\services\RealTimeApiService.h">
       <Filter>Header Files\core\services</Filter>
     </ClInclude>
     <ClInclude Include="..\submodules\imgui\imconfig.h">
@@ -116,8 +119,8 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="core\Settings.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\Addon.cpp">
       <Filter>Source Files\core</Filter>
@@ -126,6 +129,9 @@
       <Filter>Source Files\core\services</Filter>
     </ClCompile>
     <ClCompile Include="core\services\NexusService.cpp">
+      <Filter>Source Files\core\services</Filter>
+    </ClCompile>
+    <ClCompile Include="core\services\RealTimeApiService.cpp">
       <Filter>Source Files\core\services</Filter>
     </ClCompile>
     <ClCompile Include="..\submodules\imgui\imgui.cpp">

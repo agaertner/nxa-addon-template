@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-#include "core/Addon.h"
+#include "Addon.h"
 
 #include <filesystem>
 #include <fstream>

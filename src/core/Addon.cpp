@@ -1,10 +1,14 @@
 #include "Addon.h"
 
 Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) : 
-#if __has_include("../submodules/nexus-mumble/Mumble.h")
+#ifdef USE_MUMBLE
 Gw2Mumble(new Services::Gw2MumbleService(p_api)), 
 #endif
-Nexus(new Services::NexusService(p_api)), m_addonDef(p_addonDef), m_api(p_api)
+Nexus(new Services::NexusService(p_api)), 
+#ifdef USE_RTAPI
+RealTimeApi(new Services::RealTimeApiService(p_api)), 
+#endif
+m_addonDef(p_addonDef), m_api(p_api)
 {
 	m_instance = this;
 	ImGui::SetCurrentContext((ImGuiContext*)m_api->ImguiContext);
@@ -22,10 +26,13 @@ Nekres::Addon::~Addon()
 {
 	m_api->GUI_Deregister(AddonOptions);
 	m_api->GUI_Deregister(AddonRender);
-#if __has_include("../submodules/nexus-mumble/Mumble.h")
+#ifdef USE_MUMBLE
 	delete Gw2Mumble;
 #endif
 	delete Nexus;
+#ifdef USE_RTAPI
+	delete RealTimeApi;
+#endif
 	delete m_api;
 	Settings::Save(m_settingsPath);
 	m_instance = nullptr;

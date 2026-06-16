@@ -113,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../submodules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -135,7 +135,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../submodules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -152,11 +152,12 @@
   <ItemGroup>
     <ClInclude Include="core\Addon.h" />
     <ClInclude Include="core\services\Gw2MumbleService.h" />
+    <ClInclude Include="core\services\RealTimeApiService.h" />
     <ClInclude Include="core\services\NexusService.h" />
     <ClInclude Include="..\submodules\nexus-mumble\Mumble.h" />
     <ClInclude Include="..\submodules\nexus-core\Nexus.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Settings.h" />
+    <ClInclude Include="core\Settings.h" />
     <ClInclude Include="..\submodules\imgui\imconfig.h" />
     <ClInclude Include="..\submodules\imgui\imgui.h" />
     <ClInclude Include="..\submodules\imgui\imgui_internal.h" />
@@ -169,9 +170,10 @@
   <ItemGroup>
     <ClCompile Include="core\Addon.cpp" />
     <ClCompile Include="core\services\Gw2MumbleService.cpp" />
+    <ClCompile Include="core\services\RealTimeApiService.cpp" />
     <ClCompile Include="core\services\NexusService.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="core\Settings.cpp" />
     <ClCompile Include="..\submodules\imgui\imgui.cpp" />
     <ClCompile Include="..\submodules\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\submodules\imgui\imgui_draw.cpp" />
