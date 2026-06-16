@@ -1,6 +1,10 @@
 #include "Addon.h"
 
-Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) : Gw2Mumble(new Services::Gw2MumbleService(p_api)), Nexus(new Services::NexusService(p_api)), m_addonDef(p_addonDef), m_api(p_api)
+Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) : 
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
+Gw2Mumble(new Services::Gw2MumbleService(p_api)), 
+#endif
+Nexus(new Services::NexusService(p_api)), m_addonDef(p_addonDef), m_api(p_api)
 {
 	m_instance = this;
 	ImGui::SetCurrentContext((ImGuiContext*)m_api->ImguiContext);
@@ -18,7 +22,9 @@ Nekres::Addon::~Addon()
 {
 	m_api->GUI_Deregister(AddonOptions);
 	m_api->GUI_Deregister(AddonRender);
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
 	delete Gw2Mumble;
+#endif
 	delete Nexus;
 	delete m_api;
 	Settings::Save(m_settingsPath);

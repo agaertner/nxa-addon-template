@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -34,15 +34,24 @@
     <Filter Include="Header Files\thirdparty">
       <UniqueIdentifier>{23886103-6848-435d-a530-c03ea52bfd27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\thirdparty\imgui">
-      <UniqueIdentifier>{c2dd40f5-27ea-499b-a851-6b06b70cbffc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\thirdparty">
-      <UniqueIdentifier>{1e7b1000-e9ad-4abc-b825-66091199499a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\thirdparty\imgui">
-      <UniqueIdentifier>{a93557cb-a5a8-4b6e-8511-259400735e01}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="..\submodules\imgui\imconfig.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\imgui\imgui.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\imgui\imgui_internal.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\imgui\imstb_rectpack.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\imgui\imstb_textedit.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\imgui\imstb_truetype.h">
+      <Filter>Header Files\submodules\imgui</Filter>
+    </ClInclude>
     <Filter Include="Header Files\thirdparty\nlohmann">
       <UniqueIdentifier>{2c446612-42f5-45e7-9d3f-b164a888e8db}</UniqueIdentifier>
     </Filter>
@@ -81,26 +90,23 @@
     <ClInclude Include="core\services\Gw2MumbleService.h">
       <Filter>Header Files\core\services</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imconfig.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imconfig.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imgui.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imgui.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imgui_extensions.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imgui_internal.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imgui_internal.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imstb_rectpack.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imstb_rectpack.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imstb_textedit.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imstb_textedit.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="thirdparty\imgui\imstb_truetype.h">
-      <Filter>Header Files\thirdparty\imgui</Filter>
+    <ClInclude Include="..\submodules\imgui\imstb_truetype.h">
+      <Filter>Header Files\submodules\imgui</Filter>
     </ClInclude>
     <ClInclude Include="thirdparty\nlohmann\json.hpp">
       <Filter>Header Files\thirdparty\nlohmann</Filter>
@@ -122,20 +128,20 @@
     <ClCompile Include="core\services\NexusService.cpp">
       <Filter>Source Files\core\services</Filter>
     </ClCompile>
-    <ClCompile Include="thirdparty\imgui\imgui.cpp">
-      <Filter>Source Files\thirdparty\imgui</Filter>
+    <ClCompile Include="..\submodules\imgui\imgui.cpp">
+      <Filter>Source Files\submodules\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="thirdparty\imgui\imgui_demo.cpp">
-      <Filter>Source Files\thirdparty\imgui</Filter>
+    <ClCompile Include="..\submodules\imgui\imgui_demo.cpp">
+      <Filter>Source Files\submodules\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp">
-      <Filter>Source Files\thirdparty\imgui</Filter>
+    <ClCompile Include="..\submodules\imgui\imgui_draw.cpp">
+      <Filter>Source Files\submodules\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp">
-      <Filter>Source Files\thirdparty\imgui</Filter>
+    <ClCompile Include="..\submodules\imgui\imgui_tables.cpp">
+      <Filter>Source Files\submodules\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp">
-      <Filter>Source Files\thirdparty\imgui</Filter>
+    <ClCompile Include="..\submodules\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\submodules\imgui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

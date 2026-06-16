@@ -1,6 +1,7 @@
 #ifndef GW2MUMBLESERVICE_H
 #define GW2MUMBLESERVICE_H
 #include "nexus-core/Nexus.h"
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
 #include "nexus-mumble/Mumble.h"
 namespace Nekres::Services
 {
@@ -31,4 +32,5 @@ namespace Nekres::Services
 	};
 
 }
+#endif
 #endif

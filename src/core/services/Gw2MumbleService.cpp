@@ -1,5 +1,6 @@
 #include "Gw2MumbleService.h"
 
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
 Nekres::Services::Gw2MumbleService::Gw2MumbleService(AddonAPI_t* p_api)
 	: m_api(p_api),
 	m_link((Mumble::Data*)p_api->DataLink_Get("DL_MUMBLE_LINK")),
@@ -24,3 +25,4 @@ Mumble::Identity* Nekres::Services::Gw2MumbleService::Identity() const
 {
 	return m_identity;
 }
+#endif

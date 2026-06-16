@@ -1,6 +1,7 @@
 #include <Windows.h>
 //#include "resource.h"
 #include "Version.h"
+#include "Signature.h"
 #include "core/Addon.h"
 
 void AddonLoad(AddonAPI_t* aApi);
@@ -30,14 +31,14 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 extern "C" __declspec(dllexport) AddonDefinition_t* GetAddonDef()
 {
-	AddonDef.Signature = 17;
+	AddonDef.Signature = ADDON_SIGNATURE;
 	AddonDef.APIVersion = NEXUS_API_VERSION;
 	AddonDef.Name = "Addon Template";
 	AddonDef.Version.Major = V_MAJOR;
 	AddonDef.Version.Minor = V_MINOR;
 	AddonDef.Version.Build = V_BUILD;
 	AddonDef.Version.Revision = V_REVISION;
-	AddonDef.Author = "Nekres.1934";
+	AddonDef.Author = "Nekres.1943";
 	AddonDef.Description = "A basic Nexus addon template.";
 	AddonDef.Load = AddonLoad;
 	AddonDef.Unload = AddonUnload;

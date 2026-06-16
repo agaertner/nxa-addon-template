@@ -6,9 +6,10 @@
 #include <fstream>
 #include <DirectXMath.h>
 #include "../Settings.h"
-#include "../thirdparty/imgui/imgui.h"
-#include "../thirdparty/imgui/imgui_extensions.h"
+#include "imgui/imgui.h"
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
 #include "services/Gw2MumbleService.h"
+#endif
 #include "services/NexusService.h" 
 namespace Nekres {
 	class Addon
@@ -21,7 +22,9 @@ namespace Nekres {
 
 			~Addon();
 
+#if __has_include("../submodules/nexus-mumble/Mumble.h")
 			Services::Gw2MumbleService* Gw2Mumble;
+#endif
 			Services::NexusService* Nexus;
 
 			static void Log(ELogLevel p_logLevel, const char* p_message) {

@@ -77,7 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -111,6 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../submodules</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -121,7 +122,7 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PreBuildEvent>
-      <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "$d=Get-Date; $rev=$d.Hour*60+$d.Minute; @('#pragma once', ('#define V_MAJOR ' + $d.Year), ('#define V_MINOR ' + $d.Month), ('#define V_BUILD ' + $d.Day), ('#define V_REVISION ' + $rev)) | Set-Content Version.h -Encoding utf8"</Command>
+      <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "if (-not (Test-Path Signature.h)) { $sig = '0x' + (-join ((1..8) | ForEach-Object { '{0:X}' -f (Get-Random -Minimum 0 -Maximum 16) })); \"#pragma once`n#define ADDON_SIGNATURE $sig\" | Set-Content Signature.h -Encoding utf8 }; $d=Get-Date; $rev=$d.Hour*60+$d.Minute; @('#pragma once', ('#define V_MAJOR ' + $d.Year), ('#define V_MINOR ' + $d.Month), ('#define V_BUILD ' + $d.Day), ('#define V_REVISION ' + $rev)) | Set-Content Version.h -Encoding utf8"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../submodules</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -145,7 +146,7 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PreBuildEvent>
-      <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "$d=Get-Date; $rev=$d.Hour*60+$d.Minute; @('#pragma once', ('#define V_MAJOR ' + $d.Year), ('#define V_MINOR ' + $d.Month), ('#define V_BUILD ' + $d.Day), ('#define V_REVISION ' + $rev)) | Set-Content Version.h -Encoding utf8"</Command>
+      <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "if (-not (Test-Path Signature.h)) { $sig = '0x' + (-join ((1..8) | ForEach-Object { '{0:X}' -f (Get-Random -Minimum 0 -Maximum 16) })); \"#pragma once`n#define ADDON_SIGNATURE $sig\" | Set-Content Signature.h -Encoding utf8 }; $d=Get-Date; $rev=$d.Hour*60+$d.Minute; @('#pragma once', ('#define V_MAJOR ' + $d.Year), ('#define V_MINOR ' + $d.Month), ('#define V_BUILD ' + $d.Day), ('#define V_REVISION ' + $rev)) | Set-Content Version.h -Encoding utf8"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -156,13 +157,12 @@
     <ClInclude Include="..\submodules\nexus-core\Nexus.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
-    <ClInclude Include="thirdparty\imgui\imconfig.h" />
-    <ClInclude Include="thirdparty\imgui\imgui.h" />
-    <ClInclude Include="thirdparty\imgui\imgui_extensions.h" />
-    <ClInclude Include="thirdparty\imgui\imgui_internal.h" />
-    <ClInclude Include="thirdparty\imgui\imstb_rectpack.h" />
-    <ClInclude Include="thirdparty\imgui\imstb_textedit.h" />
-    <ClInclude Include="thirdparty\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\submodules\imgui\imconfig.h" />
+    <ClInclude Include="..\submodules\imgui\imgui.h" />
+    <ClInclude Include="..\submodules\imgui\imgui_internal.h" />
+    <ClInclude Include="..\submodules\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\submodules\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\submodules\imgui\imstb_truetype.h" />
     <ClInclude Include="thirdparty\nlohmann\json.hpp" />
     <ClInclude Include="Version.h" />
   </ItemGroup>
@@ -172,11 +172,11 @@
     <ClCompile Include="core\services\NexusService.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Settings.cpp" />
-    <ClCompile Include="thirdparty\imgui\imgui.cpp" />
-    <ClCompile Include="thirdparty\imgui\imgui_demo.cpp" />
-    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp" />
-    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp" />
-    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\submodules\imgui\imgui.cpp" />
+    <ClCompile Include="..\submodules\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\submodules\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\submodules\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\submodules\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
