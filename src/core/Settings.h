@@ -11,16 +11,16 @@ extern const char* WINDOW_HEIGHT;
 
 namespace Settings
 {
-	extern std::mutex	Mutex;
-	extern json			Settings;
+    extern std::mutex    Mutex;
+    extern json            Settings;
 
-	/* Loads the settings. */
-	void Load(std::filesystem::path aPath);
-	/* Saves the settings. */
-	void Save(std::filesystem::path aPath);
+    /* Loads the settings. */
+    void Load(std::filesystem::path aPath);
+    /* Saves the settings. */
+    void Save(std::filesystem::path aPath);
 
-	extern float WindowWidth;
-	extern float WindowHeight;
+    extern float WindowWidth;
+    extern float WindowHeight;
 }
 
 #endif

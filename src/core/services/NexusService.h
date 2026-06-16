@@ -4,20 +4,20 @@
 
 namespace Nekres::Services
 {
-	class NexusService
-	{
-		public:
-			NexusService(AddonAPI_t* p_api);
+    class NexusService
+    {
+        public:
+            NexusService(AddonAPI_t* p_api);
 
-			~NexusService();
+            ~NexusService();
 
-			NexusLinkData_t* Core() const;
+            NexusLinkData_t* Core() const;
 
-		private:
-			inline static NexusService* m_instance = nullptr;
+        private:
+            inline static NexusService* m_instance = nullptr;
 
-			AddonAPI_t* m_api;
-			NexusLinkData_t* m_nexus;
-	};
+            AddonAPI_t* m_api;
+            NexusLinkData_t* m_nexus;
+    };
 }
 #endif
