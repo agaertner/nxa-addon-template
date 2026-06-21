@@ -26,6 +26,12 @@ Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) :
     m_settingsPath = m_addonPath / "settings.json";
     std::filesystem::create_directories(m_addonPath);
     Settings::Load(m_settingsPath);
+
+    Services::m_audio = new AudioManager(m_api);
+    Services::Local(m_addonPath);
+
+    m_settingsUI = std::make_unique<SettingsUI>(m_settingsPath, m_addonDef);
+
     m_api->GUI_Register(ERenderType::RT_Render, AddonRender);
     m_api->GUI_Register(ERenderType::RT_OptionsRender, AddonOptions);
 }
@@ -44,6 +50,13 @@ Nekres::Addon::~Addon()
     delete Services::m_rtapi;
     Services::m_rtapi = nullptr;
 #endif
+
+    delete Services::m_audio;
+    Services::m_audio = nullptr;
+
+    delete Services::m_localManager;
+    Services::m_localManager = nullptr;
+
     delete m_api;
     Settings::Save(m_settingsPath);
     m_instance = nullptr;
@@ -55,43 +68,7 @@ void Nekres::Addon::Render()
 
 void Nekres::Addon::Options()
 {
-    // ========================================================================
-    // SETTINGS UI
-    // ========================================================================
-    if (ImGui::Checkbox("Enable Example Feature", &Settings::IsExampleEnabled))
-    {
-        Settings::Save(m_settingsPath); // Automatically save when clicked
-    }
-
-    // Dropdown (Combo) Example
-    const char* exampleOptions[] = { "Option A", "Option B", "Option C" };
-    const int exampleOptionsCount = 3;
-
-    // Safety clamp to prevent out-of-bounds access if settings get corrupted
-    if (Settings::ExampleDropdownIndex < 0 || Settings::ExampleDropdownIndex >= exampleOptionsCount) {
-        Settings::ExampleDropdownIndex = 0;
-    }
-    
-    ImGui::AlignTextToFramePadding();
-    ImGui::Text("Example Dropdown:");
-    ImGui::SameLine();
-    ImGui::SetNextItemWidth(150.0f);
-    
-    if (ImGui::BeginCombo("##ExampleDropdown", exampleOptions[Settings::ExampleDropdownIndex]))
-    {
-        for (int i = 0; i < exampleOptionsCount; i++)
-        {
-            bool isSelected = (Settings::ExampleDropdownIndex == i);
-            if (ImGui::Selectable(exampleOptions[i], isSelected))
-            {
-                Settings::ExampleDropdownIndex = i;
-                Settings::Save(m_settingsPath);
-            }
-            if (isSelected)
-            {
-                ImGui::SetItemDefaultFocus();
-            }
-        }
-        ImGui::EndCombo();
+    if (m_settingsUI) {
+        m_settingsUI->Draw();
     }
 }

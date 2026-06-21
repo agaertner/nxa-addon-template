@@ -4,10 +4,12 @@
 #include <vector>
 #include <filesystem>
 #include <fstream>
+#include <memory>
 #include <DirectXMath.h>
 #include "Settings.h"
 #include "imgui/imgui.h"
 #include "services/Services.h"
+#include "ui/SettingsUI.h"
 namespace Nekres {
     class Addon
     {
@@ -44,6 +46,8 @@ namespace Nekres {
 
             std::filesystem::path m_addonPath;
             std::filesystem::path m_settingsPath;
+
+            std::unique_ptr<SettingsUI> m_settingsUI;
 
             static void AddonRender() { m_instance->Render(); }
             static void AddonOptions() { m_instance->Options(); }

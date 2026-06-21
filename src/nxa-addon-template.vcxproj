@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -158,6 +158,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="core\Addon.h" />
+    <ClInclude Include="core\ui\Theme.h" />
+    <ClInclude Include="core\ui\Widgets.h" />
+    <ClInclude Include="core\ui\pages\ISettingsPage.h" />
+    <ClInclude Include="core\ui\pages\GeneralSettingsPage.h" />
+    <ClInclude Include="core\ui\pages\AudioSettingsPage.h" />
+    <ClInclude Include="core\ui\SettingsUI.h" />
+    <ClInclude Include="core\managers\AudioManager.h" />
+    <ClInclude Include="core\managers\LocalManager.h" />
+    <ClInclude Include="core\utils\AsyncTexture.h" />
+    <ClInclude Include="core\utils\AsyncFont.h" />
     <ClInclude Include="core\services\Gw2MumbleService.h" />
     <ClInclude Include="core\services\RealTimeApiService.h" />
     <ClInclude Include="core\services\NexusService.h" />
@@ -173,9 +183,19 @@
     <ClInclude Include="..\submodules\imgui\imstb_truetype.h" />
     <ClInclude Include="thirdparty\nlohmann\json.hpp" />
     <ClInclude Include="Version.h" />
+    <ClInclude Include="Defines.h" />
+    <ClInclude Include="Signature.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\Addon.cpp" />
+    <ClCompile Include="core\ui\Widgets.cpp" />
+    <ClCompile Include="core\ui\pages\GeneralSettingsPage.cpp" />
+    <ClCompile Include="core\ui\pages\AudioSettingsPage.cpp" />
+    <ClCompile Include="core\ui\SettingsUI.cpp" />
+    <ClCompile Include="core\managers\AudioManager.cpp" />
+    <ClCompile Include="core\managers\LocalManager.cpp" />
+    <ClCompile Include="core\utils\AsyncTexture.cpp" />
+    <ClCompile Include="core\utils\AsyncFont.cpp" />
     <ClCompile Include="core\services\Gw2MumbleService.cpp" />
     <ClCompile Include="core\services\RealTimeApiService.cpp" />
     <ClCompile Include="core\services\NexusService.cpp" />

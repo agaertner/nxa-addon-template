@@ -8,6 +8,7 @@ using json = nlohmann::json;
 
 extern const char* IS_EXAMPLE_ENABLED;
 extern const char* EXAMPLE_DROPDOWN_INDEX;
+extern const char* MASTER_VOLUME;
 
 namespace Settings
 {
@@ -26,6 +27,7 @@ namespace Settings
     // Include "Settings.h" anywhere and access them via Settings::IsExampleEnabled.
     extern bool IsExampleEnabled;
     extern int ExampleDropdownIndex;
+    extern float MasterVolume;
 }
 
 #endif

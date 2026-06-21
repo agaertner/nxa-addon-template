@@ -25,4 +25,25 @@ Mumble::Identity* Nekres::Services::Gw2MumbleService::Identity() const
 {
     return m_identity;
 }
+
+bool Nekres::Services::Gw2MumbleService::IsActive() const
+{
+    if (!m_link || m_link->Context.BuildID == 0) return false;
+
+    unsigned currentTick = m_link->UITick;
+    auto currentTime = std::chrono::steady_clock::now();
+
+    if (currentTick != m_lastUiTick) {
+        m_lastUiTick = currentTick;
+        m_lastUiTickTime = currentTime;
+        return true;
+    }
+
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - m_lastUiTickTime).count();
+    if (elapsed > 500) {
+        return false;
+    }
+
+    return true;
+}
 #endif

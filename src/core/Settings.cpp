@@ -7,6 +7,7 @@
 
 const char* IS_EXAMPLE_ENABLED = "IsExampleEnabled";
 const char* EXAMPLE_DROPDOWN_INDEX = "ExampleDropdownIndex";
+const char* MASTER_VOLUME = "MasterVolume";
 namespace Settings
 {
     std::mutex    Mutex;
@@ -44,6 +45,10 @@ namespace Settings
         {
             Settings[EXAMPLE_DROPDOWN_INDEX].get_to<int>(ExampleDropdownIndex);
         }
+        if (!Settings[MASTER_VOLUME].is_null())
+        {
+            Settings[MASTER_VOLUME].get_to<float>(MasterVolume);
+        }
     }
     void Save(std::filesystem::path aPath)
     {
@@ -55,6 +60,7 @@ namespace Settings
             // Assign global variables back into the JSON object before saving.
             Settings[IS_EXAMPLE_ENABLED] = IsExampleEnabled;
             Settings[EXAMPLE_DROPDOWN_INDEX] = ExampleDropdownIndex;
+            Settings[MASTER_VOLUME] = MasterVolume;
 
             std::ofstream file(aPath);
             file << Settings.dump(1, '\t') << std::endl;
@@ -68,4 +74,5 @@ namespace Settings
     // ========================================================================
     bool IsExampleEnabled = true;
     int ExampleDropdownIndex = 0;
+    float MasterVolume = 1.0f;
 }
