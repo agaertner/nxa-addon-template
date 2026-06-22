@@ -10,6 +10,7 @@ namespace Nekres {
         AudioSettingsPage(const std::filesystem::path& settingsPath);
         
         const char* GetName() const override;
+        const char* GetTitle() const override;
         void Render() override;
 
     private:

@@ -10,7 +10,12 @@ namespace Nekres {
 
     const char* GeneralSettingsPage::GetName() const
     {
-        return "General Settings";
+        return "General";
+    }
+
+    const char* GeneralSettingsPage::GetTitle() const
+    {
+        return "General Options";
     }
 
     void GeneralSettingsPage::Render()

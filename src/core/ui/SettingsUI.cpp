@@ -49,13 +49,18 @@ namespace Nekres {
     void SettingsUI::DrawSidebar(float footerHeight)
     {
         ImGui::PushStyleColor(ImGuiCol_ChildBg, UI::Theme::BackgroundSidebar);
-        ImGui::BeginChild("Sidebar", ImVec2(180, -footerHeight), true);
+        ImGui::BeginChild("Sidebar", ImVec2(140, -footerHeight), true);
         ImGui::PopStyleColor();
 
         ImGui::Spacing();
         ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 8.0f);
         
         ImGui::TextColored(UI::Theme::Accent, m_addonDef->Name);
+        
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 8.0f);
+        ImGui::SetWindowFontScale(0.80f);
+        ImGui::TextDisabled("by %s", m_addonDef->Author);
+        ImGui::SetWindowFontScale(1.0f);
 
         ImGui::Spacing();
         ImGui::Separator();
@@ -118,7 +123,7 @@ namespace Nekres {
             return;
         }
 
-        ImGui::TextColored(UI::Theme::Accent, m_pages[m_selectedTab]->GetName());
+        ImGui::TextColored(UI::Theme::Accent, m_pages[m_selectedTab]->GetTitle());
         ImGui::Separator();
         ImGui::Spacing();
 
@@ -138,20 +143,22 @@ namespace Nekres {
         ImGui::Separator();
         ImGui::Spacing();
 
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 3.0f);
+
+#ifdef USE_MUMBLE
         // MumbleLink Indicator
         bool mumbleDetected = false;
         bool mumbleActive = false;
-#ifdef USE_MUMBLE
         if (Services::m_mumble && Services::m_mumble->Data()) {
             mumbleDetected = true;
             if (Services::m_mumble->IsActive()) {
                 mumbleActive = true;
             }
         }
-#endif
         UI::DrawStatusIndicator("MumbleLink", mumbleDetected, mumbleActive);
-
+#endif
 #ifdef USE_RTAPI
+        // RealTime API Indicator
         bool rtapiDetected = false;
         bool rtapiActive = false;
         if (Services::m_rtapi && Services::m_rtapi->Data()) {

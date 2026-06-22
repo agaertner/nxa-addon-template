@@ -6,6 +6,7 @@ namespace Nekres {
     public:
         virtual ~ISettingsPage() = default;
         virtual const char* GetName() const = 0;
+        virtual const char* GetTitle() const = 0;
         virtual void Render() = 0;
     };
 }
