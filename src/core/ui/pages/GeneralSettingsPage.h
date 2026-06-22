@@ -1,17 +1,14 @@
-#ifndef GENERALSETTINGSPAGE_H
+﻿#ifndef GENERALSETTINGSPAGE_H
 #define GENERALSETTINGSPAGE_H
 
-#include "ISettingsPage.h"
+#include <lib-nxa-sdk/NexusSDK.h>
 #include <filesystem>
 
 namespace Nekres {
-    class GeneralSettingsPage : public ISettingsPage {
+    class GeneralSettingsPage : public NexusSDK::UI::Container {
     public:
         GeneralSettingsPage(const std::filesystem::path& settingsPath);
-        
-        const char* GetName() const override;
-        const char* GetTitle() const override;
-        void Render() override;
+        virtual ~GeneralSettingsPage() = default;
 
     private:
         std::filesystem::path m_settingsPath;

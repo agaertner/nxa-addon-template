@@ -27,8 +27,21 @@ Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) :
     std::filesystem::create_directories(m_addonPath);
     Settings::Load(m_settingsPath);
 
-    Services::m_audio = new AudioManager(m_api);
-    Services::Local(m_addonPath);
+    extern HMODULE hSelf;
+
+    Services::m_audio = new NexusSDK::AudioManager(m_api);
+    NexusSDK::UI::Initialize(m_api, hSelf, Services::m_audio);
+    Services::Local(m_addonPath, m_api);
+
+    // Provide language callback
+    Services::Local()->SetLanguageProvider([this]() -> int {
+#ifdef USE_RTAPI
+        if (Services::m_rtapi && Services::m_rtapi->Data()) {
+            return Services::m_rtapi->Data()->Language;
+        }
+#endif
+        return 0;
+    });
 
     m_settingsUI = std::make_unique<SettingsUI>(m_settingsPath, m_addonDef);
 
@@ -69,6 +82,6 @@ void Nekres::Addon::Render()
 void Nekres::Addon::Options()
 {
     if (m_settingsUI) {
-        m_settingsUI->Draw();
+        m_settingsUI->Render();
     }
 }

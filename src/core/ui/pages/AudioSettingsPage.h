@@ -1,17 +1,14 @@
-#ifndef AUDIOSETTINGSPAGE_H
+﻿#ifndef AUDIOSETTINGSPAGE_H
 #define AUDIOSETTINGSPAGE_H
 
-#include "ISettingsPage.h"
+#include <lib-nxa-sdk/NexusSDK.h>
 #include <filesystem>
 
 namespace Nekres {
-    class AudioSettingsPage : public ISettingsPage {
+    class AudioSettingsPage : public NexusSDK::UI::Container {
     public:
         AudioSettingsPage(const std::filesystem::path& settingsPath);
-        
-        const char* GetName() const override;
-        const char* GetTitle() const override;
-        void Render() override;
+        virtual ~AudioSettingsPage() = default;
 
     private:
         std::filesystem::path m_settingsPath;

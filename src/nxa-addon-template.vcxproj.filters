@@ -65,10 +65,10 @@
 <ClInclude Include="core\ui\SettingsUI.h">
       <Filter>source\ui</Filter>
     </ClInclude>
-    <ClInclude Include="core\managers\AudioManager.h">
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.h">
       <Filter>source\managers</Filter>
     </ClInclude>
-    <ClInclude Include="core\managers\LocalManager.h">
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.h">
       <Filter>source\managers</Filter>
     </ClInclude>
     <ClInclude Include="core\utils\AsyncTexture.h">
@@ -145,10 +145,22 @@
 <ClCompile Include="core\ui\SettingsUI.cpp">
       <Filter>source\ui</Filter>
     </ClCompile>
-    <ClCompile Include="core\managers\AudioManager.cpp">
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.cpp">
+      <Filter>lib-nxa-sdk\src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\UIContext.cpp">
+      <Filter>lib-nxa-sdk\src\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Dropdown.cpp">
+      <Filter>lib-nxa-sdk\ui\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.cpp">
+      <Filter>lib-nxa-sdk\src\ui\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Slider.cpp">
       <Filter>source\managers</Filter>
     </ClCompile>
-    <ClCompile Include="core\managers\LocalManager.cpp">
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.cpp">
       <Filter>source\managers</Filter>
     </ClCompile>
     <ClCompile Include="core\utils\AsyncTexture.cpp">
@@ -187,6 +199,11 @@
     <ClCompile Include="..\submodules\imgui\imgui_widgets.cpp">
       <Filter>submodules\imgui</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="nxa-addon-template.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
 

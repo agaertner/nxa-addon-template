@@ -159,15 +159,28 @@
   <ItemGroup>
     <ClInclude Include="core\Addon.h" />
     <ClInclude Include="core\ui\Theme.h" />
-    <ClInclude Include="core\ui\Widgets.h" />
-    <ClInclude Include="core\ui\pages\ISettingsPage.h" />
+    <ClInclude Include="core\ui\Footer.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Dropdown.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Slider.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\ComboBox.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Menu.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\FlowPanel.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\NexusSDK.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\UIContext.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\ControlBase.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Container.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Tooltip.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\WindowBase.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.h" />
     <ClInclude Include="core\ui\pages\GeneralSettingsPage.h" />
     <ClInclude Include="core\ui\pages\AudioSettingsPage.h" />
     <ClInclude Include="core\ui\SettingsUI.h" />
-    <ClInclude Include="core\managers\AudioManager.h" />
-    <ClInclude Include="core\managers\LocalManager.h" />
-    <ClInclude Include="core\utils\AsyncTexture.h" />
-    <ClInclude Include="core\utils\AsyncFont.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\AsyncTexture.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\AsyncFont.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\ImID.h" />
     <ClInclude Include="core\services\Gw2MumbleService.h" />
     <ClInclude Include="core\services\RealTimeApiService.h" />
     <ClInclude Include="core\services\NexusService.h" />
@@ -188,14 +201,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\Addon.cpp" />
-    <ClCompile Include="core\ui\Widgets.cpp" />
+    <ClCompile Include="core\ui\Footer.cpp" />
     <ClCompile Include="core\ui\pages\GeneralSettingsPage.cpp" />
     <ClCompile Include="core\ui\pages\AudioSettingsPage.cpp" />
     <ClCompile Include="core\ui\SettingsUI.cpp" />
-    <ClCompile Include="core\managers\AudioManager.cpp" />
-    <ClCompile Include="core\managers\LocalManager.cpp" />
-    <ClCompile Include="core\utils\AsyncTexture.cpp" />
-    <ClCompile Include="core\utils\AsyncFont.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\UIContext.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Dropdown.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Slider.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncTexture.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncFont.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.cpp" />
     <ClCompile Include="core\services\Gw2MumbleService.cpp" />
     <ClCompile Include="core\services\RealTimeApiService.cpp" />
     <ClCompile Include="core\services\NexusService.cpp" />
@@ -210,4 +228,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ItemGroup>
+    <ResourceCompile Include="nxa-addon-template.rc" />
+  </ItemGroup>
 </Project>

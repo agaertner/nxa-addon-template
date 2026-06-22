@@ -1,28 +1,39 @@
-#ifndef SETTINGSUI_H
+﻿#ifndef SETTINGSUI_H
 #define SETTINGSUI_H
 
 #include <filesystem>
 #include <vector>
 #include <memory>
 #include "../../Defines.h"
-#include "pages/ISettingsPage.h"
+#include <lib-nxa-sdk/NexusSDK.h>
+#include "Footer.h"
 
 namespace Nekres {
-    class SettingsUI {
+
+    class ContentArea : public NexusSDK::UI::Container {
+    public:
+        ContentArea() : NexusSDK::UI::Container() {}
+        virtual ~ContentArea() = default;
+        std::string HeaderTitle;
+    protected:
+        virtual void OnRender() override;
+    };
+
+    class SettingsUI : public NexusSDK::UI::FlowPanel {
     public:
         SettingsUI(const std::filesystem::path& settingsPath, AddonDefinition_t* addonDef);
-        ~SettingsUI() = default;
-        
-        void Draw();
+        virtual ~SettingsUI() = default;
+    protected:
+        virtual void OnRender() override;
 
     private:
-        void DrawSidebar(float footerHeight);
-        void DrawContent(float footerHeight);
-        void DrawFooter();
         std::filesystem::path m_settingsPath;
         AddonDefinition_t* m_addonDef;
-        std::vector<std::unique_ptr<ISettingsPage>> m_pages;
-        int m_selectedTab = 0;
+
+        std::shared_ptr<ContentArea> m_contentPanel;
+        std::shared_ptr<UI::Footer> m_footer;
+        std::shared_ptr<NexusSDK::UI::Menu> m_sidebarMenu;
+        std::shared_ptr<NexusSDK::UI::FlowPanel> m_mainBody;
     };
 }
 

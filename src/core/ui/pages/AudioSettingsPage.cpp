@@ -5,33 +5,20 @@
 
 namespace Nekres {
     AudioSettingsPage::AudioSettingsPage(const std::filesystem::path& settingsPath)
-        : m_settingsPath(settingsPath)
+        : Container(), m_settingsPath(settingsPath)
     {
-    }
+        auto flowPanel = std::make_shared<NexusSDK::UI::FlowPanel>();
+        AddChild(flowPanel);
 
-    const char* AudioSettingsPage::GetName() const
-    {
-        return "Sound";
-    }
-
-    const char* AudioSettingsPage::GetTitle() const
-    {
-        return "Sound Options";
-    }
-
-    void AudioSettingsPage::Render()
-    {
-        ImGui::Spacing();
-        ImGui::AlignTextToFramePadding();
-        ImGui::Text("Master Volume:");
-        ImGui::SameLine();
-        ImGui::SetNextItemWidth(250.0f);
-        if (ImGui::SliderFloat("##MasterVolume", &Settings::MasterVolume, 0.0f, 1.0f, "%.2f")) {
+        auto masterVol = std::make_shared<NexusSDK::UI::Slider>("Master Volume:", &Settings::MasterVolume, 0.0f, 1.0f);
+        masterVol->SetSize(ImVec2(150, 0));
+        masterVol->OnValueChanged = [this](float val) {
             Settings::Save(m_settingsPath);
             if (Services::m_audio) {
-                Services::m_audio->UpdateVolume();
+                Services::m_audio->SetVolume(Settings::MasterVolume);
             }
-        }
-        ImGui::Spacing();
+        };
+
+        flowPanel->AddChild(masterVol);
     }
 }
