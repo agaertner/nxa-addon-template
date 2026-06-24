@@ -1,7 +1,7 @@
-﻿#ifndef GENERALSETTINGSPAGE_H
+#ifndef GENERALSETTINGSPAGE_H
 #define GENERALSETTINGSPAGE_H
 
-#include <lib-nxa-sdk/NexusSDK.h>
+#include <NexusSDK.h>
 #include <filesystem>
 
 namespace Nekres {

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -77,6 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -94,6 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -111,9 +113,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.;../submodules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -136,9 +139,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;NXAWINDOWRESIZE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.;../submodules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -166,8 +170,9 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\ComboBox.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Menu.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\FlowPanel.h" />
-    <ClInclude Include="..\submodules\lib-nxa-sdk\NexusSDK.h" />
-    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\UIContext.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\NexusSDK.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\Viewport.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\ImStateGuards.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\ControlBase.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Container.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Tooltip.h" />
@@ -175,28 +180,29 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.h" />
     <ClInclude Include="core\ui\pages\GeneralSettingsPage.h" />
     <ClInclude Include="core\ui\pages\AudioSettingsPage.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imconfig.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui_internal.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_textedit.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_truetype.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Button.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\StandardDialog.h" />
     <ClInclude Include="core\ui\SettingsUI.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\ContentManager.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\AsyncTexture.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\AsyncFont.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\utils\ImID.h" />
-    <ClInclude Include="core\services\Gw2MumbleService.h" />
-    <ClInclude Include="core\services\RealTimeApiService.h" />
-    <ClInclude Include="core\services\NexusService.h" />
-    <ClInclude Include="..\submodules\nexus-mumble\Mumble.h" />
-    <ClInclude Include="..\submodules\nexus-core\Nexus.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\services\Gw2MumbleService.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\services\RealTimeApiService.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\services\NexusService.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="core\Settings.h" />
-    <ClInclude Include="..\submodules\imgui\imconfig.h" />
-    <ClInclude Include="..\submodules\imgui\imgui.h" />
-    <ClInclude Include="..\submodules\imgui\imgui_internal.h" />
-    <ClInclude Include="..\submodules\imgui\imstb_rectpack.h" />
-    <ClInclude Include="..\submodules\imgui\imstb_textedit.h" />
-    <ClInclude Include="..\submodules\imgui\imstb_truetype.h" />
     <ClInclude Include="thirdparty\nlohmann\json.hpp" />
     <ClInclude Include="Version.h" />
-    <ClInclude Include="Defines.h" />
     <ClInclude Include="Signature.h" />
   </ItemGroup>
   <ItemGroup>
@@ -206,24 +212,28 @@
     <ClCompile Include="core\ui\pages\AudioSettingsPage.cpp" />
     <ClCompile Include="core\ui\SettingsUI.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.cpp" />
-    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\UIContext.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\Viewport.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Dropdown.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Slider.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Button.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Menu.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\StandardDialog.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\LocalManager.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\ContentManager.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncTexture.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncFont.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.cpp" />
-    <ClCompile Include="core\services\Gw2MumbleService.cpp" />
-    <ClCompile Include="core\services\RealTimeApiService.cpp" />
-    <ClCompile Include="core\services\NexusService.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\Gw2MumbleService.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\RealTimeApiService.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\NexusService.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="core\Settings.cpp" />
-    <ClCompile Include="..\submodules\imgui\imgui.cpp" />
-    <ClCompile Include="..\submodules\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\submodules\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\submodules\imgui\imgui_tables.cpp" />
-    <ClCompile Include="..\submodules\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

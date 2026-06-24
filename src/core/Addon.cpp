@@ -5,13 +5,6 @@
 Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) : 
     m_addonDef(p_addonDef), m_api(p_api)
 {
-#ifdef USE_MUMBLE
-    Services::Mumble(p_api);
-#endif
-    Services::Nexus(p_api);
-#ifdef USE_RTAPI
-    Services::RTAPI(p_api);
-#endif
 
     m_instance = this;
     ImGui::SetCurrentContext((ImGuiContext*)m_api->ImguiContext);
@@ -29,19 +22,9 @@ Nekres::Addon::Addon(AddonDefinition_t* p_addonDef, AddonAPI_t* p_api) :
 
     extern HMODULE hSelf;
 
-    Services::m_audio = new NexusSDK::AudioManager(m_api);
-    NexusSDK::UI::Initialize(m_api, hSelf, Services::m_audio);
-    Services::Local(m_addonPath, m_api);
-
-    // Provide language callback
-    Services::Local()->SetLanguageProvider([this]() -> int {
-#ifdef USE_RTAPI
-        if (Services::m_rtapi && Services::m_rtapi->Data()) {
-            return Services::m_rtapi->Data()->Language;
-        }
-#endif
-        return 0;
-    });
+    NexusSDK::Initialize(m_api, hSelf, m_addonPath);
+    NexusSDK::Audio->SetMasterVolume(Settings::MasterVolume);
+    NexusSDK::Audio->SetChannelVolume("UI", Settings::UIVolume);
 
     m_settingsUI = std::make_unique<SettingsUI>(m_settingsPath, m_addonDef);
 
@@ -53,22 +36,8 @@ Nekres::Addon::~Addon()
 {
     m_api->GUI_Deregister(AddonOptions);
     m_api->GUI_Deregister(AddonRender);
-#ifdef USE_MUMBLE
-    delete Services::m_mumble;
-    Services::m_mumble = nullptr;
-#endif
-    delete Services::m_nexus;
-    Services::m_nexus = nullptr;
-#ifdef USE_RTAPI
-    delete Services::m_rtapi;
-    Services::m_rtapi = nullptr;
-#endif
 
-    delete Services::m_audio;
-    Services::m_audio = nullptr;
-
-    delete Services::m_localManager;
-    Services::m_localManager = nullptr;
+    NexusSDK::Shutdown();
 
     delete m_api;
     Settings::Save(m_settingsPath);
@@ -77,11 +46,18 @@ Nekres::Addon::~Addon()
 
 void Nekres::Addon::Render()
 {
+    NexusSDK::Render();
 }
 
 void Nekres::Addon::Options()
 {
     if (m_settingsUI) {
-        m_settingsUI->Render();
+        NexusSDK::UI::Rectangle bounds;
+        bounds.X = ImGui::GetCursorScreenPos().x;
+        bounds.Y = ImGui::GetCursorScreenPos().y;
+        bounds.Width = ImGui::GetContentRegionAvail().x;
+        bounds.Height = ImGui::GetContentRegionAvail().y;
+
+        m_settingsUI->Draw(bounds, 1.0f);
     }
 }

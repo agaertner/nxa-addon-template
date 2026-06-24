@@ -1,6 +1,5 @@
 #include "Footer.h"
-#include <imgui/imgui.h>
-#include "../services/Services.h"
+#include <nexus-imgui/imgui.h>
 
 namespace Nekres::UI {
     
@@ -8,7 +7,7 @@ namespace Nekres::UI {
     {
     }
 
-    void Footer::OnRender()
+    void Footer::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale)
     {
         ImGui::Spacing();
         ImGui::Separator();
@@ -16,32 +15,29 @@ namespace Nekres::UI {
 
         ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 3.0f);
 
-#ifdef USE_MUMBLE
         // MumbleLink Indicator
         bool mumbleDetected = false;
         bool mumbleActive = false;
-        if (Services::m_mumble && Services::m_mumble->Data()) {
+        if (NexusSDK::Mumble && NexusSDK::Mumble->Data()) {
             mumbleDetected = true;
-            if (Services::m_mumble->IsActive()) {
+            if (NexusSDK::Mumble->IsActive()) {
                 mumbleActive = true;
             }
         }
         DrawStatusIndicator("MumbleLink", mumbleDetected, mumbleActive);
-#endif
-#ifdef USE_RTAPI
+
         // RealTime API Indicator
         bool rtapiDetected = false;
         bool rtapiActive = false;
-        if (Services::m_rtapi && Services::m_rtapi->Data()) {
+        if (NexusSDK::RTAPI && NexusSDK::RTAPI->Data()) {
             rtapiDetected = true;
-            if (Services::m_rtapi->Data()->GameBuild != 0) {
+            if (NexusSDK::RTAPI->Data()->GameBuild != 0) {
                 rtapiActive = true;
             }
         }
         ImGui::SameLine();
         ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.0f);
         DrawStatusIndicator("RealTime API", rtapiDetected, rtapiActive);
-#endif
 
         // Right side: Name of Addon and version
         char versionText[256];

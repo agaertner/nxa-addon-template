@@ -1,4 +1,4 @@
 #include "resource.h"
 
 // Include SDK Resources
-#include "../submodules/lib-nxa-sdk/nexus-sdk.rc"
+#include "../submodules/lib-nxa-sdk/src/nexus-sdk.rc"

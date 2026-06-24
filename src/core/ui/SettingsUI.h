@@ -1,11 +1,11 @@
-﻿#ifndef SETTINGSUI_H
+#ifndef SETTINGSUI_H
 #define SETTINGSUI_H
 
 #include <filesystem>
 #include <vector>
 #include <memory>
-#include "../../Defines.h"
-#include <lib-nxa-sdk/NexusSDK.h>
+#include <nexus-core/Nexus.h>
+#include <NexusSDK.h>
 #include "Footer.h"
 
 namespace Nekres {
@@ -16,7 +16,7 @@ namespace Nekres {
         virtual ~ContentArea() = default;
         std::string HeaderTitle;
     protected:
-        virtual void OnRender() override;
+        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) override;
     };
 
     class SettingsUI : public NexusSDK::UI::FlowPanel {
@@ -24,7 +24,7 @@ namespace Nekres {
         SettingsUI(const std::filesystem::path& settingsPath, AddonDefinition_t* addonDef);
         virtual ~SettingsUI() = default;
     protected:
-        virtual void OnRender() override;
+        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) override;
 
     private:
         std::filesystem::path m_settingsPath;

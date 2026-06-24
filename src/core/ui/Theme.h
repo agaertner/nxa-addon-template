@@ -1,7 +1,7 @@
 #ifndef THEME_H
 #define THEME_H
 
-#include <imgui/imgui.h>
+#include <nexus-imgui/imgui.h>
 
 namespace Nekres::UI {
     struct Theme {

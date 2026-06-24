@@ -1,5 +1,5 @@
 ﻿#pragma once
 #define V_MAJOR 2026
 #define V_MINOR 6
-#define V_BUILD 22
-#define V_REVISION 984
+#define V_BUILD 24
+#define V_REVISION 272

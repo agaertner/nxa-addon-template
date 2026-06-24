@@ -1,38 +1,46 @@
 #include "SettingsUI.h"
 #include "../Settings.h"
-#include "../services/Services.h"
 #include "Theme.h"
 #include "pages/GeneralSettingsPage.h"
 #include "pages/AudioSettingsPage.h"
-#include <imgui/imgui.h>
+#include <nexus-imgui/imgui.h>
+#include <lib-nxa-sdk/src/utils/ImStateGuards.h>
 
 namespace Nekres {
 
-    void ContentArea::OnRender() {
-        ImGui::PushStyleColor(ImGuiCol_ChildBg, UI::Theme::BackgroundContent);
+    void ContentArea::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) {
+        ImGui::SetCursorScreenPos(bounds.GetMin());
+
         ImVec2 padding = ImGui::GetStyle().WindowPadding;
         padding.x += 5.0f;
         padding.y += 5.0f;
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, padding);
-        
-        bool isVisible = ImGui::BeginChild(m_id.c_str(), m_size, true);
-        ImGui::PopStyleVar();
-        ImGui::PopStyleColor();
+
+        bool isVisible = false;
+        {
+            NexusSDK::UI::Color bgGuard(ImGuiCol_ChildBg, UI::Theme::BackgroundContent);
+            NexusSDK::UI::Style padGuard(ImGuiStyleVar_WindowPadding, padding);
+            isVisible = ImGui::BeginChild(m_id.c_str(), GetSize(), true);
+        }
 
         if (isVisible) {
             if (!HeaderTitle.empty()) {
-                ImGui::TextColored(UI::Theme::Accent, HeaderTitle.c_str());
+                ImGui::TextColored(UI::Theme::Accent, "%s", HeaderTitle.c_str());
                 ImGui::Separator();
                 ImGui::Spacing();
             }
 
-            ImGui::PushStyleColor(ImGuiCol_Header, UI::Theme::HeaderColor);
-            ImGui::PushStyleColor(ImGuiCol_HeaderHovered, UI::Theme::AccentHover);
-            ImGui::PushStyleColor(ImGuiCol_HeaderActive, UI::Theme::Accent);
+            NexusSDK::UI::Color headerGuard(ImGuiCol_Header, UI::Theme::HeaderColor);
+            NexusSDK::UI::Color headerHoverGuard(ImGuiCol_HeaderHovered, UI::Theme::AccentHover);
+            NexusSDK::UI::Color headerActiveGuard(ImGuiCol_HeaderActive, UI::Theme::Accent);
 
-            RenderChildren();
+            ImVec2 scrolledPos = ImGui::GetCursorScreenPos();
+            NexusSDK::UI::Rectangle clientBounds;
+            clientBounds.X = scrolledPos.x;
+            clientBounds.Y = scrolledPos.y;
+            clientBounds.Width = GetSize().x;
+            clientBounds.Height = GetSize().y;
 
-            ImGui::PopStyleColor(3);
+            NexusSDK::UI::Container::DrawChildren(clientBounds, scale);
         }
         ImGui::EndChild();
     }
@@ -80,27 +88,20 @@ namespace Nekres {
         }
     }
 
-    void SettingsUI::OnRender()
+    void SettingsUI::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale)
     {
-        ImFont* fontUI = nullptr;
-        if (Services::m_nexus && Services::m_nexus->Core()) {
-            fontUI = (ImFont*)Services::m_nexus->Core()->FontUI;
-        }
-
-        if (fontUI) {
-            ImGui::PushFont(fontUI);
-        }
-
         float footerHeight = ImGui::GetTextLineHeightWithSpacing() + ImGui::GetStyle().ItemSpacing.y * 3.0f + 5.0f;
 
-        m_mainBody->SetSize(ImVec2(0, -footerHeight));
-        m_sidebarMenu->SetSize(ImVec2(140, 0));
-        m_contentPanel->SetSize(ImVec2(0, 0));
+        float availableWidth = bounds.Width / scale;
+        float availableHeight = bounds.Height / scale;
 
-        FlowPanel::OnRender();
+        m_mainBody->SetSize(ImVec2(availableWidth, availableHeight - footerHeight));
+        m_sidebarMenu->SetSize(ImVec2(140.0f, availableHeight - footerHeight));
+        
+        // ControlPadding defaults to 8.0f in FlowPanel. Since mainBody padding is 0.0f, we don't subtract padding.
+        m_contentPanel->SetSize(ImVec2(availableWidth - 140.0f, availableHeight - footerHeight));
+        m_footer->SetSize(ImVec2(availableWidth, footerHeight));
 
-        if (fontUI) {
-            ImGui::PopFont();
-        }
+        NexusSDK::UI::FlowPanel::OnDraw(bounds, scale);
     }
 }

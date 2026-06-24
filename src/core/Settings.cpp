@@ -8,6 +8,7 @@
 const char* IS_EXAMPLE_ENABLED = "IsExampleEnabled";
 const char* EXAMPLE_DROPDOWN_INDEX = "ExampleDropdownIndex";
 const char* MASTER_VOLUME = "MasterVolume";
+const char* UI_VOLUME = "UIVolume";
 namespace Settings
 {
     std::mutex    Mutex;
@@ -49,6 +50,10 @@ namespace Settings
         {
             Settings[MASTER_VOLUME].get_to<float>(MasterVolume);
         }
+        if (!Settings[UI_VOLUME].is_null())
+        {
+            Settings[UI_VOLUME].get_to<float>(UIVolume);
+        }
     }
     void Save(std::filesystem::path aPath)
     {
@@ -61,6 +66,7 @@ namespace Settings
             Settings[IS_EXAMPLE_ENABLED] = IsExampleEnabled;
             Settings[EXAMPLE_DROPDOWN_INDEX] = ExampleDropdownIndex;
             Settings[MASTER_VOLUME] = MasterVolume;
+            Settings[UI_VOLUME] = UIVolume;
 
             std::ofstream file(aPath);
             file << Settings.dump(1, '\t') << std::endl;
@@ -75,4 +81,5 @@ namespace Settings
     bool IsExampleEnabled = true;
     int ExampleDropdownIndex = 0;
     float MasterVolume = 1.0f;
+    float UIVolume = 1.0f;
 }

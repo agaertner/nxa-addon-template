@@ -1,7 +1,7 @@
-﻿#ifndef AUDIOSETTINGSPAGE_H
+#ifndef AUDIOSETTINGSPAGE_H
 #define AUDIOSETTINGSPAGE_H
 
-#include <lib-nxa-sdk/NexusSDK.h>
+#include <NexusSDK.h>
 #include <filesystem>
 
 namespace Nekres {

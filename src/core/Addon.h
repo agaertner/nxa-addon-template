@@ -7,8 +7,8 @@
 #include <memory>
 #include <DirectXMath.h>
 #include "Settings.h"
-#include "imgui/imgui.h"
-#include "services/Services.h"
+#include "nexus-imgui/imgui.h"
+#include <NexusSDK.h>
 #include "ui/SettingsUI.h"
 namespace Nekres {
     class Addon
