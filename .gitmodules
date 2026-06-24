@@ -1,12 +1,3 @@
-[submodule "submodules/nexus-core"]
-	path = submodules/nexus-core
-	url = https://github.com/RaidcoreGG/RCGG-lib-nexus-api.git
-[submodule "submodules/imgui"]
-	path = submodules/imgui
-	url = https://github.com/RaidcoreGG/imgui18000.git
-[submodule "submodules/nexus-mumble"]
-	path = submodules/nexus-mumble
-	url = https://github.com/RaidcoreGG/RCGG-lib-mumble-api.git
 [submodule "submodules/lib-nxa-sdk"]
 	path = submodules/lib-nxa-sdk
 	url = https://github.com/agaertner/lib-nxa-sdk.git
