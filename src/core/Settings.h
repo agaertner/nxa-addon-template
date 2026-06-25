@@ -3,7 +3,7 @@
 
 #include <mutex>
 
-#include "thirdparty/nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
 extern const char* IS_EXAMPLE_ENABLED;

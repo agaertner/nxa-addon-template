@@ -2,7 +2,7 @@
 #define FOOTER_H
 
 #include <NexusSDK.h>
-#include <nexus-core/Nexus.h>
+#include <Nexus.h>
 
 namespace Nekres::UI {
     class Footer : public NexusSDK::UI::ControlBase {

@@ -1,7 +1,7 @@
 #include "AudioSettingsPage.h"
 #include "../../Settings.h"
 #include <NexusSDK.h>
-#include <nexus-imgui/imgui.h>
+#include <imgui.h>
 #include <chrono>
 
 namespace Nekres {

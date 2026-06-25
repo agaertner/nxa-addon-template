@@ -7,7 +7,7 @@
 #include <memory>
 #include <DirectXMath.h>
 #include "Settings.h"
-#include "nexus-imgui/imgui.h"
+#include <imgui.h>
 #include <NexusSDK.h>
 #include "ui/SettingsUI.h"
 namespace Nekres {

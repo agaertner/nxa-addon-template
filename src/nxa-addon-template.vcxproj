@@ -116,7 +116,7 @@
       <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src;..\submodules\lib-nxa-sdk\thirdparty;..\submodules\lib-nxa-sdk\nexus-core;..\submodules\lib-nxa-sdk\nexus-imgui;..\submodules\lib-nxa-sdk\nexus-rtapi;..\submodules\lib-nxa-sdk\nexus-mumble</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -142,7 +142,7 @@
       <DisableSpecificWarnings>26819;26495;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../submodules;..\submodules\lib-nxa-sdk;..\submodules\lib-nxa-sdk\src;..\submodules\lib-nxa-sdk\thirdparty;..\submodules\lib-nxa-sdk\nexus-core;..\submodules\lib-nxa-sdk\nexus-imgui;..\submodules\lib-nxa-sdk\nexus-rtapi;..\submodules\lib-nxa-sdk\nexus-mumble</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -201,7 +201,7 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\services\NexusService.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="core\Settings.h" />
-    <ClInclude Include="thirdparty\nlohmann\json.hpp" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\thirdparty\nlohmann\json.hpp" />
     <ClInclude Include="Version.h" />
     <ClInclude Include="Signature.h" />
   </ItemGroup>

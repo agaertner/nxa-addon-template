@@ -1,6 +1,6 @@
 ﻿#include "GeneralSettingsPage.h"
 #include "../../Settings.h"
-#include <nexus-imgui/imgui.h>
+#include <imgui.h>
 #include <windows.h>
 
 namespace Nekres {
@@ -37,7 +37,7 @@ namespace Nekres {
         auto exampleButton = std::make_shared<NexusSDK::UI::Button>("btnExample", "Example Button");
         exampleButton->OnClick = []() {
             auto dialog = NexusSDK::UI::StandardDialog::Show(
-                "<size=30><b><c=#00bfff>Example Dialog</c></b></size>\nThis is an <u>example dialog</u> which auto-adjusts to its content. <b>The text will wrap</b> when needed. It uses <s>crazy</s> simple markup for formatting. <stroke>It can even add stroke effect.</stroke> or link to <href=\"https://raidcore.gg/\">Raidcore.gg</href>.",
+                "<size=30><b><c=#00bfff>Example Dialog</c></b></size>\n- <b>Bold</b>\n- <i>Italic</i>\n- <s>Strikethrough</s>\n- <u>Underline</u>\n- <stroke>Stroke</stroke>\n- <href=\"https://raidcore.gg/\">Raidcore.gg</href>\n- <u><b><i><s><stroke><c=#ff0000><href=\"https://raidcore.gg/\">Everything at once.</href></c></stroke></s></i></b></u>",
                 NexusSDK::UI::DialogIcon::Exclamation
             );
         };

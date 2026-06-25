@@ -3,7 +3,7 @@
 #include "Theme.h"
 #include "pages/GeneralSettingsPage.h"
 #include "pages/AudioSettingsPage.h"
-#include <nexus-imgui/imgui.h>
+#include <imgui.h>
 #include <lib-nxa-sdk/src/utils/ImStateGuards.h>
 
 namespace Nekres {

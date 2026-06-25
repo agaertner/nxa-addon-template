@@ -4,7 +4,6 @@
 #include <filesystem>
 #include <vector>
 #include <memory>
-#include <nexus-core/Nexus.h>
 #include <NexusSDK.h>
 #include "Footer.h"
 

@@ -67,8 +67,8 @@
     <ClInclude Include="core\Settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="thirdparty\nlohmann\json.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\submodules\lib-nxa-sdk\thirdparty\nlohmann\json.hpp">
+      <Filter>Header Files\lib-nxa-sdk</Filter>
     </ClInclude>
     <ClInclude Include="Version.h">
       <Filter>Header Files</Filter>
