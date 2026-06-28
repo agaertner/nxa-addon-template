@@ -58,6 +58,6 @@ void Nekres::Addon::Options()
         bounds.Width = ImGui::GetContentRegionAvail().x;
         bounds.Height = ImGui::GetContentRegionAvail().y;
 
-        m_settingsUI->Draw(bounds, 1.0f);
+        m_settingsUI->Draw(bounds);
     }
 }

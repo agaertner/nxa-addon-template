@@ -15,7 +15,7 @@ namespace Nekres {
         virtual ~ContentArea() = default;
         std::string HeaderTitle;
     protected:
-        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) override;
+        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds) override;
     };
 
     class SettingsUI : public NexusSDK::UI::FlowPanel {
@@ -23,7 +23,7 @@ namespace Nekres {
         SettingsUI(const std::filesystem::path& settingsPath, AddonDefinition_t* addonDef);
         virtual ~SettingsUI() = default;
     protected:
-        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) override;
+        virtual void OnDraw(const NexusSDK::UI::Rectangle& bounds) override;
 
     private:
         std::filesystem::path m_settingsPath;

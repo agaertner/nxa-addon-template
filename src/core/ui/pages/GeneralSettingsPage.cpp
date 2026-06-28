@@ -41,6 +41,7 @@ namespace Nekres {
                 NexusSDK::UI::DialogIcon::Exclamation
             );
         };
+        exampleButton->Tooltip = NexusSDK::UI::Tooltip::Create("<b>Example Tooltip</b>\nThis button opens an example dialog.");
         flowPanel->AddChild(exampleButton);
     }
 }

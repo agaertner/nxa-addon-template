@@ -76,7 +76,6 @@
     <ClInclude Include="Signature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-
     <!-- Header Files\lib-nxa-sdk -->
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.h">
       <Filter>Header Files\lib-nxa-sdk</Filter>
@@ -171,12 +170,7 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\services\NexusService.h">
       <Filter>Header Files\lib-nxa-sdk</Filter>
     </ClInclude>
-
     <!-- Header Files\nexus-core -->
-    <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-core\Nexus.h">
-      <Filter>Header Files\nexus-core</Filter>
-    </ClInclude>
-
     <!-- Header Files\nexus-imgui -->
     <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imconfig.h">
       <Filter>Header Files\nexus-imgui</Filter>
@@ -196,8 +190,10 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_truetype.h">
       <Filter>Header Files\nexus-imgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
-  
   <ItemGroup>
     <!-- Source Files -->
     <ClCompile Include="core\Addon.cpp">
@@ -221,12 +217,8 @@
     <ClCompile Include="core\Settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-
     <!-- Source Files\lib-nxa-sdk -->
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.cpp">
-      <Filter>Source Files\lib-nxa-sdk</Filter>
-    </ClCompile>
-    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\Viewport.cpp">
       <Filter>Source Files\lib-nxa-sdk</Filter>
     </ClCompile>
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.cpp">
@@ -286,7 +278,6 @@
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\NexusService.cpp">
       <Filter>Source Files\lib-nxa-sdk</Filter>
     </ClCompile>
-
     <!-- Source Files\nexus-imgui -->
     <ClCompile Include="..\submodules\lib-nxa-sdk\nexus-imgui\imgui.cpp">
       <Filter>Source Files\nexus-imgui</Filter>
@@ -304,7 +295,6 @@
       <Filter>Source Files\nexus-imgui</Filter>
     </ClCompile>
   </ItemGroup>
-
   <ItemGroup>
     <ResourceCompile Include="nxa-addon-template.rc">
       <Filter>Resource Files</Filter>

@@ -7,7 +7,7 @@ namespace Nekres::UI {
     {
     }
 
-    void Footer::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale)
+    void Footer::OnDraw(const NexusSDK::UI::Rectangle& bounds)
     {
         ImGui::Spacing();
         ImGui::Separator();

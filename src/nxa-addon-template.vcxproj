@@ -186,6 +186,7 @@
     <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_rectpack.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_textedit.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\nexus-imgui\imstb_truetype.h" />
+    <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\SpriteBatch.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\Button.h" />
     <ClInclude Include="..\submodules\lib-nxa-sdk\src\ui\controls\StandardDialog.h" />
@@ -212,7 +213,6 @@
     <ClCompile Include="core\ui\pages\AudioSettingsPage.cpp" />
     <ClCompile Include="core\ui\SettingsUI.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\AudioManager.cpp" />
-    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\Viewport.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Checkbox.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Dropdown.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Slider.cpp" />
@@ -228,7 +228,9 @@
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\managers\ContentManager.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncTexture.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\utils\AsyncFont.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\SpriteBatch.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\Label.cpp" />
+    <ClCompile Include="..\submodules\lib-nxa-sdk\src\ui\controls\ControlBase.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\Gw2MumbleService.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\RealTimeApiService.cpp" />
     <ClCompile Include="..\submodules\lib-nxa-sdk\src\services\NexusService.cpp" />

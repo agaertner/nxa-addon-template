@@ -8,7 +8,7 @@
 
 namespace Nekres {
 
-    void ContentArea::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale) {
+    void ContentArea::OnDraw(const NexusSDK::UI::Rectangle& bounds) {
         ImGui::SetCursorScreenPos(bounds.GetMin());
 
         ImVec2 padding = ImGui::GetStyle().WindowPadding;
@@ -17,9 +17,9 @@ namespace Nekres {
 
         bool isVisible = false;
         {
-            NexusSDK::UI::Color bgGuard(ImGuiCol_ChildBg, UI::Theme::BackgroundContent);
-            NexusSDK::UI::Style padGuard(ImGuiStyleVar_WindowPadding, padding);
-            isVisible = ImGui::BeginChild(m_id.c_str(), GetSize(), true);
+            NexusSDK::UI::ColorGuard bg(ImGuiCol_ChildBg, UI::Theme::BackgroundContent);
+            NexusSDK::UI::StyleGuard pad(ImGuiStyleVar_WindowPadding, padding);
+            isVisible = ImGui::BeginChild(m_id.c_str(), ImVec2(bounds.Width, bounds.Height), true);
         }
 
         if (isVisible) {
@@ -29,18 +29,18 @@ namespace Nekres {
                 ImGui::Spacing();
             }
 
-            NexusSDK::UI::Color headerGuard(ImGuiCol_Header, UI::Theme::HeaderColor);
-            NexusSDK::UI::Color headerHoverGuard(ImGuiCol_HeaderHovered, UI::Theme::AccentHover);
-            NexusSDK::UI::Color headerActiveGuard(ImGuiCol_HeaderActive, UI::Theme::Accent);
+            NexusSDK::UI::ColorGuard header(ImGuiCol_Header, UI::Theme::HeaderColor);
+            NexusSDK::UI::ColorGuard headerHovered(ImGuiCol_HeaderHovered, UI::Theme::AccentHover);
+            NexusSDK::UI::ColorGuard headerActive(ImGuiCol_HeaderActive, UI::Theme::Accent);
 
             ImVec2 scrolledPos = ImGui::GetCursorScreenPos();
             NexusSDK::UI::Rectangle clientBounds;
             clientBounds.X = scrolledPos.x;
             clientBounds.Y = scrolledPos.y;
-            clientBounds.Width = GetSize().x;
-            clientBounds.Height = GetSize().y;
+            clientBounds.Width = bounds.Width;
+            clientBounds.Height = bounds.Height;
 
-            NexusSDK::UI::Container::DrawChildren(clientBounds, scale);
+            NexusSDK::UI::Container::DrawChildren(clientBounds);
         }
         ImGui::EndChild();
     }
@@ -88,8 +88,9 @@ namespace Nekres {
         }
     }
 
-    void SettingsUI::OnDraw(const NexusSDK::UI::Rectangle& bounds, float scale)
+    void SettingsUI::OnDraw(const NexusSDK::UI::Rectangle& bounds)
     {
+        float scale = NexusSDK::UI::UIScale::Get();
         float footerHeight = ImGui::GetTextLineHeightWithSpacing() + ImGui::GetStyle().ItemSpacing.y * 3.0f + 5.0f;
 
         float availableWidth = bounds.Width / scale;
@@ -102,6 +103,6 @@ namespace Nekres {
         m_contentPanel->SetSize(ImVec2(availableWidth - 140.0f, availableHeight - footerHeight));
         m_footer->SetSize(ImVec2(availableWidth, footerHeight));
 
-        NexusSDK::UI::FlowPanel::OnDraw(bounds, scale);
+        NexusSDK::UI::FlowPanel::OnDraw(bounds);
     }
 }
